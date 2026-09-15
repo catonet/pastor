@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastoraméricas — Red Latinoamericana de Ganaderos Extensivos</title>
+<meta name="description" content="Pastoraméricas une a crianceros altoandinos, ganaderos del Cono Sur y pastores del Gran Chaco. Seminario-Taller Innovación y Sostenibilidad de Pastos y Pastizales Altoandinos, 16-18 de septiembre 2026, Puno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-primary: #8B4513;
+    --color-primary-dark: #5C2E0B;
+    --color-secondary: #556B2F;
+    --color-secondary-light: #8FBC8F;
+    --color-accent: #D97706;
+    --color-bg: #FDFBF7;
+    --color-surface: #F3EFE6;
+    --color-ink: #211A13;
+    --color-text: #1C1917;
+    --color-muted: #675E54;
+    --color-line: #DDD3C3;
+    --font-display: 'Lora', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --wrap: 1220px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+  body{
+    margin:0; background:var(--color-bg); color:var(--color-text);
+    font-family:var(--font-body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  /* subtle global grain for a printed-poster finish — one restrained texture, not per-section decoration */
+  body::before{
+    content:''; position:fixed; inset:0; z-index:999; pointer-events:none; opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 28px; }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; margin:0; color:var(--color-ink); letter-spacing:-0.01em; }
+  ::selection{ background:var(--color-accent); color:#fff; }
+  :focus-visible{ outline:3px solid var(--color-accent); outline-offset:3px; }
+
+  /* ---------- photo / duotone system ---------- */
+  .photo-block{ position:relative; overflow:hidden; background:var(--color-ink); }
+  .photo-block img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(0.35) contrast(1.08) brightness(0.92); display:block;
+  }
+  .duo-terra::after, .duo-terra .duo-layer{ background:linear-gradient(150deg, rgba(139,69,19,0.82), rgba(92,46,11,0.6)); }
+  .duo-olive .duo-layer{ background:linear-gradient(150deg, rgba(85,107,47,0.8), rgba(53,66,29,0.6)); }
+  .duo-amber .duo-layer{ background:linear-gradient(150deg, rgba(217,119,6,0.72), rgba(139,69,19,0.66)); }
+  .duo-ink .duo-layer{ background:linear-gradient(160deg, rgba(33,26,19,0.82), rgba(85,107,47,0.5)); }
+  .photo-block .duo-layer{ position:absolute; inset:0; mix-blend-mode:multiply; }
+  .photo-block .shade{ position:absolute; inset:0; background:linear-gradient(to top, rgba(19,15,10,0.88) 0%, rgba(19,15,10,0.25) 45%, transparent 72%); }
+  .photo-block .content{ position:relative; z-index:2; }
+
+  /* ---------- Header / Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50; background:rgba(253,251,247,0.92); backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--color-line);
+  }
+  .scroll-bar{ position:absolute; left:0; bottom:-1px; height:2px; background:var(--color-accent); width:0%; }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.28rem; color:var(--color-ink); text-decoration:none; }
+  .brand .mark{ width:30px; height:30px; flex:none; }
+  .brand .sub{ font-family:var(--font-body); font-size:0.6rem; font-weight:700; color:var(--color-secondary); letter-spacing:0.05em; display:block; }
+  nav.primary{ display:flex; align-items:center; gap:28px; }
+  nav.primary a{ text-decoration:none; font-size:0.9rem; font-weight:500; color:var(--color-text); position:relative; padding:4px 0; }
+  nav.primary a::after{ content:''; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--color-accent); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; }
+  nav.primary a:hover::after, nav.primary a:focus-visible::after{ transform:scaleX(1); }
+  .nav-cta{ background:var(--color-primary); color:#fff !important; padding:10px 18px; border-radius:2px; font-weight:600 !important; }
+  .nav-cta::after{ display:none; }
+  .nav-cta:hover{ background:var(--color-primary-dark); }
+  .burger{ display:none; background:none; border:0; cursor:pointer; padding:8px; }
+  .burger span{ display:block; width:24px; height:2px; background:var(--color-ink); margin:5px 0; }
+
+  /* ---------- Hero (full-bleed photo) ---------- */
+  .hero{ position:relative; min-height:640px; display:flex; align-items:flex-end; }
+  .hero-inner{ position:relative; z-index:2; padding:80px 0 68px; width:100%; }
+  .eyebrow-row{ display:flex; align-items:center; gap:12px; margin-bottom:22px; }
+  .eyebrow-dot{ width:8px; height:8px; border-radius:50%; background:var(--color-accent); }
+  .eyebrow{ font-size:0.86rem; font-weight:600; color:#fff; opacity:0.9; }
+  .hero h1{ color:#fff; font-size:clamp(2.6rem, 6vw, 5.1rem); line-height:1.0; letter-spacing:-0.02em; max-width:16ch; }
+  .hero p.lede{ margin-top:26px; max-width:50ch; font-size:1.12rem; color:rgba(255,255,255,0.86); line-height:1.65; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; font-family:var(--font-body); font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:2px; border:1.5px solid transparent; cursor:pointer; }
+  .btn-primary{ background:var(--color-accent); color:#1C1917; }
+  .btn-primary:hover{ background:#c46b05; }
+  .btn-outline{ border-color:#fff; color:#fff; }
+  .btn-outline:hover{ background:#fff; color:var(--color-ink); }
+  .btn-dark{ background:var(--color-ink); color:#fff; }
+  .btn-dark:hover{ background:#000; }
+
+  .hero-meta{ display:flex; gap:40px; margin-top:56px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.3); padding-top:22px; }
+  .hero-meta div{ color:#fff; }
+  .hero-meta .n{ font-family:var(--font-display); font-size:1.6rem; }
+  .hero-meta .l{ font-size:0.78rem; color:rgba(255,255,255,0.72); margin-top:2px; max-width:22ch; }
+
+  /* ---------- Stats ---------- */
+  .stats{ background:var(--color-ink); color:#fff; padding:52px 0; }
+  .stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .stat{ padding:0 26px; border-left:1px solid rgba(255,255,255,0.16); }
+  .stat:first-child{ border-left:0; padding-left:0; }
+  .stat .num{ font-family:var(--font-display); font-size:clamp(1.8rem,3vw,2.6rem); color:var(--color-secondary-light); }
+  .stat .label{ margin-top:8px; font-size:0.85rem; color:rgba(255,255,255,0.72); line-height:1.4; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:100px 0; }
+  .section-head{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:40px; align-items:end; margin-bottom:56px; padding-bottom:28px; border-bottom:1px solid var(--color-line); }
+  .section-head h2{ font-size:clamp(1.9rem,3.4vw,2.7rem); }
+  .section-head .kicker{ font-size:0.86rem; font-weight:600; color:var(--color-primary); margin-bottom:10px; display:block; }
+  .section-head p{ color:var(--color-muted); font-size:1.02rem; margin:0; }
+
+  /* ---------- Manifiesto ---------- */
+  .manifesto{ background:var(--color-surface); }
+  .manifesto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+  .manifesto blockquote{ margin:0; padding-left:26px; border-left:3px solid var(--color-primary); font-family:var(--font-display); font-size:1.35rem; line-height:1.55; color:var(--color-ink); }
+  .manifesto blockquote p{ margin:0 0 18px; }
+  .manifesto blockquote footer{ margin-top:20px; font-family:var(--font-body); font-size:0.85rem; font-style:normal; color:var(--color-muted); }
+  .commitments{ list-style:none; margin:0; padding:0; counter-reset:commit; }
+  .commitments li{ counter-increment:commit; position:relative; padding:22px 0 22px 52px; border-top:1px solid var(--color-line); }
+  .commitments li:last-child{ border-bottom:1px solid var(--color-line); }
+  .commitments li::before{ content: counter(commit, decimal-leading-zero); position:absolute; left:0; top:22px; font-family:var(--font-display); font-size:1.1rem; color:var(--color-primary); }
+  .commitments h4{ font-size:1.02rem; margin-bottom:6px; }
+  .commitments p{ margin:0; color:var(--color-muted); font-size:0.95rem; }
+
+  /* ---------- Full-bleed quote interstitial ---------- */
+  .interstitial{ position:relative; min-height:420px; display:flex; align-items:center; padding:0; }
+  .interstitial .content{ padding:80px 0; }
+  .interstitial blockquote{ margin:0; max-width:20ch; font-family:var(--font-display); font-style:italic; font-size:clamp(1.6rem,3.4vw,2.6rem); color:#fff; line-height:1.35; }
+  .interstitial footer{ margin-top:22px; font-family:var(--font-body); font-style:normal; font-size:0.9rem; color:rgba(255,255,255,0.75); }
+
+  /* ---------- Territorios ---------- */
+  .territories{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--color-line); }
+  .territory{ position:relative; min-height:380px; display:flex; flex-direction:column; justify-content:flex-end; padding:34px 30px; }
+  .territory .region-label{ font-size:0.8rem; font-weight:600; color:#fff; opacity:0.85; margin-bottom:10px; }
+  .territory h3{ color:#fff; font-size:1.4rem; margin-bottom:10px; }
+  .territory p{ color:rgba(255,255,255,0.82); font-size:0.93rem; margin:0; max-width:34ch; }
+
+  /* ---------- Ciencia ---------- */
+  .ciencia-grid{ display:grid; grid-template-columns:1.6fr 1fr; gap:56px; align-items:stretch; }
+  .pillars{ display:flex; flex-direction:column; gap:38px; }
+  .pillar{ display:grid; grid-template-columns:52px 1fr; gap:22px; padding-bottom:32px; border-bottom:1px solid var(--color-line); }
+  .pillar:last-child{ border-bottom:0; padding-bottom:0; }
+  .pillar-icon{ width:44px; height:44px; }
+  .pillar h3{ font-size:1.16rem; margin-bottom:10px; }
+  .pillar p{ color:var(--color-muted); font-size:0.95rem; margin:0; }
+  .ciencia-photo{ position:relative; min-height:360px; }
+  .ciencia-photo .caption{ position:absolute; left:0; right:0; bottom:0; padding:22px 22px; }
+  .ciencia-photo .caption p{ color:#fff; font-size:0.88rem; margin:0; max-width:28ch; }
+
+  /* ---------- Liderazgo ---------- */
+  .leaders{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--color-line); }
+  .leader{ padding:34px 30px; border-bottom:1px solid var(--color-line); border-right:1px solid var(--color-line); }
+  .leader:last-child{ border-right:0; }
+  .leader .role{ font-size:0.8rem; font-weight:600; color:var(--color-secondary); margin-bottom:10px; }
+  .leader h3{ font-size:1.15rem; margin-bottom:12px; }
+  .leader p{ color:var(--color-muted); font-size:0.9rem; margin:0 0 10px; }
+  .leader p:last-child{ margin-bottom:0; }
+
+  /* ---------- Alianzas ---------- */
+  .alliances-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--color-line); border:1px solid var(--color-line); }
+  .alliance{ background:var(--color-bg); padding:26px 24px; }
+  .alliance .name{ font-family:var(--font-display); font-weight:600; font-size:1.02rem; color:var(--color-ink); }
+  .alliance .level{ display:inline-block; margin-top:6px; font-size:0.72rem; font-weight:600; color:var(--color-primary); }
+  .alliance p{ margin-top:12px; font-size:0.87rem; color:var(--color-muted); }
+
+  /* ================= EVENTO DESTACADO (Seminario INIA) ================= */
+  .evento{ position:relative; min-height:auto; padding:0; }
+  .evento-top{ position:relative; min-height:460px; display:flex; align-items:flex-end; }
+  .evento-top .content{ padding:70px 0 56px; width:100%; }
+  .evento-tag{ display:inline-flex; align-items:center; gap:10px; background:rgba(217,119,6,0.92); color:#1C1917; font-weight:700; font-size:0.78rem; padding:7px 14px; margin-bottom:22px; }
+  .evento-tag .dot{ width:6px; height:6px; border-radius:50%; background:#1C1917; }
+  .evento-top h2{ color:#fff; font-size:clamp(2rem,4.2vw,3.4rem); max-width:22ch; line-height:1.06; }
+  .evento-top .lede{ color:rgba(255,255,255,0.88); max-width:58ch; font-size:1.08rem; margin-top:22px; line-height:1.6; }
+  .evento-dates{ display:flex; gap:0; margin-top:38px; }
+  .evento-dates .d{ font-family:var(--font-display); font-size:clamp(2.4rem,5vw,3.6rem); color:#fff; padding-right:22px; margin-right:22px; border-right:1px solid rgba(255,255,255,0.35); line-height:1; }
+  .evento-dates .d:last-of-type{ border-right:0; }
+  .evento-dates .dmeta{ align-self:flex-end; color:rgba(255,255,255,0.78); font-size:0.85rem; padding-bottom:6px; }
+  .evento-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+
+  .evento-body{ background:var(--color-surface); padding:64px 0 90px; }
+  .evento-intro{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; margin-bottom:64px; }
+  .evento-intro .lead-copy p{ color:var(--color-text); font-size:1.05rem; line-height:1.7; margin:0 0 18px; }
+  .evento-facts{ background:#fff; border:1px solid var(--color-line); padding:28px; align-self:start; }
+  .evento-facts h4{ font-size:0.85rem; font-weight:700; color:var(--color-primary); margin-bottom:18px; text-transform:none; }
+  .evento-facts dl{ margin:0; }
+  .evento-facts .row{ display:flex; justify-content:space-between; gap:14px; padding:12px 0; border-top:1px solid var(--color-line); font-size:0.9rem; }
+  .evento-facts .row:first-of-type{ border-top:0; padding-top:0; }
+  .evento-facts dt{ color:var(--color-muted); }
+  .evento-facts dd{ margin:0; text-align:right; font-weight:600; color:var(--color-ink); max-width:60%; }
+
+  .ejes-nav{ display:flex; gap:2px; background:var(--color-line); margin-bottom:0; flex-wrap:wrap; }
+  .ejes-nav button{
+    flex:1; min-width:180px; background:#fff; border:0; padding:20px 22px; text-align:left; cursor:pointer;
+    font-family:var(--font-body); color:var(--color-muted);
+  }
+  .ejes-nav button .roman{ font-family:var(--font-display); font-size:0.95rem; color:var(--color-primary); display:block; margin-bottom:6px; }
+  .ejes-nav button .day{ font-size:0.72rem; font-weight:700; letter-spacing:0.02em; color:var(--color-secondary); display:block; margin-bottom:8px; }
+  .ejes-nav button .ttl{ font-family:var(--font-display); font-size:1.05rem; color:var(--color-ink); display:block; }
+  .ejes-nav button[aria-selected="true"]{ background:var(--color-ink); }
+  .ejes-nav button[aria-selected="true"] .roman{ color:var(--color-secondary-light); }
+  .ejes-nav button[aria-selected="true"] .day{ color:var(--color-accent); }
+  .ejes-nav button[aria-selected="true"] .ttl{ color:#fff; }
+
+  .eje-panel{ display:none; background:#fff; border:1px solid var(--color-line); border-top:0; padding:40px; }
+  .eje-panel.active{ display:block; }
+  .eje-panel .eje-context{ color:var(--color-muted); font-size:0.95rem; max-width:70ch; margin-bottom:30px; line-height:1.65; }
+  .agenda-list{ list-style:none; margin:0; padding:0; }
+  .agenda-list li{ display:grid; grid-template-columns:120px 1fr; gap:20px; padding:16px 0; border-top:1px solid var(--color-line); }
+  .agenda-list li:first-child{ border-top:0; }
+  .agenda-list .time{ font-size:0.82rem; font-weight:600; color:var(--color-primary); font-variant-numeric:tabular-nums; padding-top:2px; }
+  .agenda-list .what strong{ display:block; font-family:var(--font-display); font-weight:600; font-size:1rem; color:var(--color-ink); margin-bottom:3px; }
+  .agenda-list .what span{ font-size:0.87rem; color:var(--color-muted); }
+
+  .evento-foot{ display:grid; grid-template-columns:1.2fr 1fr; gap:56px; margin-top:64px; padding-top:48px; border-top:1px solid var(--color-line); }
+  .cert-box h4, .org-box h4{ font-size:1.05rem; margin-bottom:14px; }
+  .cert-box p{ color:var(--color-muted); font-size:0.93rem; line-height:1.6; margin:0 0 10px; }
+  .org-list{ list-style:none; margin:0; padding:0; }
+  .org-list li{ padding:10px 0; border-top:1px solid var(--color-line); font-size:0.9rem; display:flex; justify-content:space-between; gap:12px; }
+  .org-list li:first-child{ border-top:0; }
+  .org-list .role{ color:var(--color-muted); font-size:0.8rem; text-align:right; }
+
+  /* ---------- Medios ---------- */
+  .media-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:2px; background:var(--color-line); }
+  .media-card{ background:var(--color-bg); padding:30px 28px; display:flex; flex-direction:column; justify-content:space-between; min-height:220px; }
+  .media-card .outlet{ font-size:0.78rem; font-weight:600; color:var(--color-primary); }
+  .media-card h3{ font-size:1.15rem; margin:14px 0; }
+  .media-card .read{ font-size:0.85rem; font-weight:600; color:var(--color-ink); text-decoration:none; }
+  .media-card .read:hover{ color:var(--color-primary); }
+
+  /* ---------- Contacto ---------- */
+  .contact{ background:var(--color-surface); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+  .contact-form{ display:flex; flex-direction:column; gap:18px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:0.85rem; font-weight:600; color:var(--color-ink); }
+  .field input, .field select, .field textarea{ border:1px solid var(--color-line); background:var(--color-bg); padding:12px 14px; font-family:var(--font-body); font-size:0.95rem; border-radius:2px; color:var(--color-text); }
+  .field textarea{ resize:vertical; min-height:110px; }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--color-primary); }
+  .contact-side h3{ font-size:1.2rem; margin-bottom:18px; }
+  .contact-channels{ list-style:none; margin:0 0 36px; padding:0; }
+  .contact-channels li{ padding:14px 0; border-top:1px solid var(--color-line); font-size:0.95rem; }
+  .contact-channels li:last-child{ border-bottom:1px solid var(--color-line); }
+  .contact-channels .clabel{ display:block; font-size:0.78rem; font-weight:600; color:var(--color-secondary); margin-bottom:4px; }
+  .form-status{ font-size:0.88rem; color:var(--color-secondary); min-height:20px; }
+
+  /* ---------- Footer ---------- */
+  footer.site{ background:var(--color-ink); color:rgba(255,255,255,0.7); padding:64px 0 30px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,0.14); }
+  .footer-grid h5{ color:#fff; font-family:var(--font-body); font-size:0.82rem; font-weight:700; margin-bottom:16px; letter-spacing:0.02em; }
+  .footer-grid ul{ list-style:none; margin:0; padding:0; }
+  .footer-grid li{ margin-bottom:10px; font-size:0.9rem; }
+  .footer-grid a{ text-decoration:none; color:rgba(255,255,255,0.7); }
+  .footer-grid a:hover{ color:#fff; }
+  .footer-brand p{ font-size:0.9rem; max-width:32ch; color:rgba(255,255,255,0.55); margin-top:14px; }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:0.78rem; color:rgba(255,255,255,0.4); flex-wrap:wrap; gap:12px; }
+
+  .hero-inner{ animation:rise .8s ease both; }
+  @keyframes rise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+
+  @media (max-width: 980px){
+    .hero-inner{ grid-template-columns:1fr; gap:36px; }
+    .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
+    .stat:nth-child(3){ border-left:0; }
+    .section-head{ grid-template-columns:1fr; }
+    .manifesto-grid{ grid-template-columns:1fr; gap:40px; }
+    .territories{ grid-template-columns:1fr; }
+    .ciencia-grid{ grid-template-columns:1fr; }
+    .leaders{ grid-template-columns:1fr; }
+    .leader{ border-right:0; }
+    .alliances-grid{ grid-template-columns:1fr 1fr; }
+    .media-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; gap:44px; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .evento-intro{ grid-template-columns:1fr; }
+    .evento-foot{ grid-template-columns:1fr; gap:36px; }
+    .ejes-nav{ flex-direction:column; }
+    .agenda-list li{ grid-template-columns:1fr; gap:4px; }
+    nav.primary{ position:fixed; inset:76px 0 0 0; background:var(--color-bg); flex-direction:column; align-items:flex-start; padding:32px 28px; gap:24px; transform:translateX(100%); transition:transform .3s ease; z-index:40; }
+    nav.primary.open{ transform:translateX(0); }
+    .burger{ display:block; }
+  }
+  @media (max-width: 600px){
+    section{ padding:68px 0; }
+    .evento-body{ padding:48px 0 64px; }
+    .alliances-grid{ grid-template-columns:1fr; }
+    .evento-dates .d{ font-size:2.1rem; padding-right:14px; margin-right:14px; }
+    .eje-panel{ padding:26px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 24L11 9L16 17L21 6L30 24" stroke="#8B4513" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+        <path d="M2 24H30" stroke="#556B2F" stroke-width="2.2"/>
+      </svg>
+      <span>Pastoraméricas<span class="sub">RED LATINOAMERICANA DE GANADEROS EXTENSIVOS</span></span>
+    </a>
+    <nav class="primary" id="primaryNav">
+      <a href="#evento">Seminario Puno</a>
+      <a href="#manifiesto">Manifiesto</a>
+      <a href="#territorios">Territorios</a>
+      <a href="#liderazgo">Liderazgo</a>
+      <a href="#medios">Medios</a>
+      <a href="#contacto" class="nav-cta">Únete a la red</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="scroll-bar" id="scrollBar"></div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero photo-block duo-terra" style="padding:0;">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/106_Alpacas_Lake_Titicaca_Peru_3254_%2815182262402%29.jpg" alt="Alpacas junto al lago Titicaca, Puno" loading="eager">
+    <div class="duo-layer"></div>
+    <div class="shade"></div>
+    <div class="wrap content hero-inner">
+      <div class="eyebrow-row">
+        <span class="eyebrow-dot"></span>
+        <span class="eyebrow">Movimiento Pastoril Mundial · América Latina</span>
+      </div>
+      <h1>El pastoralismo extensivo cuida el planeta, alimenta comunidades y resguarda la vida.</h1>
+      <p class="lede">Pastoraméricas une a los crianceros altoandinos, ganaderos tradicionales del Cono Sur y pastores del Gran Chaco para defender la movilidad animal, la soberanía territorial y la ganadería de pastizal frente a la crisis climática global.</p>
+      <div class="hero-ctas">
+        <a href="#evento" class="btn btn-primary">Seminario en Puno · 16-18 set.</a>
+        <a href="#manifiesto" class="btn btn-outline">Conoce nuestro manifiesto</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="n">54%</div><div class="l">de la superficie terrestre mundial son pastizales — FAO</div></div>
+        <div><div class="n">4M+</div><div class="l">hectáreas agropecuarias en la región Puno</div></div>
+        <div><div class="n">2026</div><div class="l">Año Internacional de los Pastizales y los Pastores</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><div class="num">48.6%</div><div class="label">del Valor Bruto de Producción agrícola de Puno proviene de forrajes</div></div>
+      <div class="stat"><div class="num">+300M</div><div class="label">USD/año generados por pequeños rumiantes en sistemas pastoriles</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">grandes biomas representados: Andes, Cono Sur y Gran Chaco</div></div>
+      <div class="stat"><div class="num">40h</div><div class="label">certificación académica INIA / UNA Puno en el seminario de septiembre</div></div>
+    </div>
+  </div>
+
+  <!-- ================= EVENTO DESTACADO ================= -->
+  <section class="evento" id="evento">
+    <div class="evento-top photo-block duo-ink">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Vista_de_los_Andes%2C_Limatambo%2C_Cuzco%2C_Per%C3%BA%2C_2015-07-30%2C_DD_75.JPG" alt="Paisaje andino de pastizales y montañas" loading="lazy">
+      <div class="duo-layer"></div>
+      <div class="shade"></div>
+      <div class="wrap content">
+        <span class="evento-tag"><span class="dot"></span>Seminario-Taller · INIA EEA Illpa &amp; UNA Puno</span>
+        <h2>Innovación y Sostenibilidad de Pastos y Pastizales Altoandinos</h2>
+        <p class="lede">¿Cómo fortalecer la alimentación y productividad del ganado en los Andes? Profesionales, técnicos, productores y estudiantes se reúnen para compartir conocimientos, experiencias y soluciones para el desarrollo de pastos y pastizales altoandinos, con una jornada práctica de campo incluida.</p>
+        <div class="evento-dates">
+          <span class="d">16</span><span class="d">17</span><span class="d">18</span>
+          <span class="dmeta">de septiembre, 2026<br>Virtual y presencial · Puno</span>
+        </div>
+        <div class="evento-ctas">
+          <a class="btn btn-primary" href="https://forms.gle/hs1b4iiFMJu4sUDh6" target="_blank" rel="noopener">Inscríbete gratis</a>
+          <a class="btn btn-outline" href="https://tinyurl.com/3ppdvw7s" target="_blank" rel="noopener">Ver programa completo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="evento-body">
+      <div class="wrap">
+        <div class="evento-intro">
+          <div class="lead-copy">
+            <p>La región Puno posee una superficie agropecuaria de más de 4 millones de hectáreas, donde la ganadería constituye el pilar de la economía rural y la base de la seguridad alimentaria de miles de familias altoandinas. Los cultivos forrajeros —alfalfa, avena y cebada— representan el 48.6% del Valor Bruto de Producción agrícola regional.</p>
+            <p>El seminario se organiza en el marco del Año Internacional de los Pastizales y los Pastores, declarado por la Asamblea General de las Naciones Unidas para 2026, y reúne al CTRIA Puno, el INIA (Estación Experimental Agraria Illpa), la Universidad Nacional del Altiplano, AGRORURAL y AGP S.A.C.</p>
+          </div>
+          <div class="evento-facts">
+            <h4 id="daysLabel">Días para el inicio</h4>
+            <dl>
+              <div class="row"><dt>Cuenta regresiva</dt><dd id="daysCount">—</dd></div>
+              <div class="row"><dt>Modalidad</dt><dd>Virtual (16–17) + presencial (18)</dd></div>
+              <div class="row"><dt>Lugar presencial</dt><dd>Cía. Ganadera del Sur, Yocará, Juliaca</dd></div>
+              <div class="row"><dt>Dirigido a</dt><dd>Profesionales, técnicos, productores, estudiantes</dd></div>
+              <div class="row"><dt>Certificación</dt><dd>40 horas académicas, INIA / UNA Puno</dd></div>
+              <div class="row"><dt>Costo</dt><dd>Gratuito</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="ejes-nav" role="tablist" aria-label="Ejes temáticos del seminario">
+          <button role="tab" aria-selected="true" data-panel="eje1">
+            <span class="roman">Eje I</span>
+            <span class="day">16 de septiembre · virtual</span>
+            <span class="ttl">Investigación científica y adaptación climática</span>
+          </button>
+          <button role="tab" aria-selected="false" data-panel="eje2">
+            <span class="roman">Eje II</span>
+            <span class="day">17 de septiembre · virtual</span>
+            <span class="ttl">Desarrollo de tecnologías</span>
+          </button>
+          <button role="tab" aria-selected="false" data-panel="eje3">
+            <span class="roman">Eje III</span>
+            <span class="day">18 de septiembre · día de campo</span>
+            <span class="ttl">Producción de pastos y crianza de ganado</span>
+          </button>
+        </div>
+
+        <div class="eje-panel active" id="eje1">
+          <p class="eje-context">Los bofedales y pastizales de puna enfrentan heladas severas y sequías prolongadas que reducen el rendimiento de las praderas. La jornada virtual reúne investigación sobre monitoreo climático, captura de carbono y manejo hídrico de los ecosistemas altoandinos.</p>
+          <ul class="agenda-list">
+            <li><span class="time">18:20</span><div class="what"><strong>Año Internacional de los Pastizales y los Pastores</strong><span>PhD. Cecilia Turín Canchaya — Coordinadora Región Sudamérica, Alianza Global IYRP 2026</span></div></li>
+            <li><span class="time">18:30</span><div class="what"><strong>Monitoreo y manejo adaptativo de ecosistemas de pastizal</strong><span>Dr. Enrique Flores Mariazza — UNALM</span></div></li>
+            <li><span class="time">19:10</span><div class="what"><strong>Captura de carbono en ecosistemas altoandinos</strong><span>Dra. Wendy Ampuero Reyes — Universidad de Maguill y Universidad Científica</span></div></li>
+            <li><span class="time">19:40</span><div class="what"><strong>Necesidades hídricas de los bofedales del Altiplano</strong><span>Ing. Richard Zea Mamani — Especialista en qochas, reservorios y canales</span></div></li>
+            <li><span class="time">20:10</span><div class="what"><strong>Pellets de avena y vicia para alpacas</strong><span>Ing. Edgar Quispe Coila — EEA Illpa del INIA</span></div></li>
+            <li><span class="time">21:00</span><div class="what"><strong>Teledetección y SIG de bofedales altoandinos</strong><span>Ing. Héctor Añamuro Luque — UNAJ</span></div></li>
+          </ul>
+        </div>
+
+        <div class="eje-panel" id="eje2">
+          <p class="eje-context">Puno enfrenta una baja tasa de adopción tecnológica y escaso uso de semilla certificada. El INIA ha desarrollado variedades de alto valor genético —como Avena Tayko y Alfalfa W350— cuya transferencia es el eje de esta jornada.</p>
+          <ul class="agenda-list">
+            <li><span class="time">18:00</span><div class="what"><strong>Gobernanza global de pastizales en el IYRP 2026</strong><span>PhD. Mariana Escobar Arango — Representante de la FAO en el Perú</span></div></li>
+            <li><span class="time">18:30</span><div class="what"><strong>Nuevas líneas de avena y cebada forrajera para altura</strong><span>Ing. Julio César Zeballos Cabana — EEA Illpa</span></div></li>
+            <li><span class="time">19:10</span><div class="what"><strong>Asociación de pastos con tecnología de Nueva Zelanda</strong><span>Ing. Bonifacio Chambi Apaza — AGRORURAL Puno</span></div></li>
+            <li><span class="time">19:50</span><div class="what"><strong>Nueva variedad Avena 2000 y manejo de la roya</strong><span>Ing. Jorge Félix Passuni Huayta — EEA Santa Ana</span></div></li>
+            <li><span class="time">20:30</span><div class="what"><strong>Consideraciones en la implantación de alfalfa</strong><span>Ing. Ronald Vilca Colquehuanca — AGP S.A.C.</span></div></li>
+          </ul>
+        </div>
+
+        <div class="eje-panel" id="eje3">
+          <p class="eje-context">Día de campo en un fundo comercial de escala real, la Compañía Ganadera del Sur, donde se demuestra cómo la mecanización, el riego tecnificado y la zootecnia especializada elevan la rentabilidad ganadera del Altiplano.</p>
+          <ul class="agenda-list">
+            <li><span class="time">08:30</span><div class="what"><strong>Recepción y bienvenida</strong><span>Sr. Ciriaco Yucra Yucra — Fundo Compañía Ganadera del Sur</span></div></li>
+            <li><span class="time">09:20</span><div class="what"><strong>Maquinaria agrícola para la producción de forrajes</strong><span>Dr. Dawes Ramos Alata — UNA Puno</span></div></li>
+            <li><span class="time">10:00</span><div class="what"><strong>Estaciones itinerantes</strong><span>Mecanización · manejo de vacunos · pastos neozelandeses · riego tecnificado vs. secano</span></div></li>
+            <li><span class="time">12:00</span><div class="what"><strong>Crianza de ovinos y vitrina tecnológica</strong><span>Compañía Ganadera del Sur y equipo AGP S.A.C.</span></div></li>
+            <li><span class="time">13:20</span><div class="what"><strong>Conclusiones y clausura</strong><span>Reconocimiento al fundo anfitrión y cierre del seminario</span></div></li>
+          </ul>
+        </div>
+
+        <div class="evento-foot">
+          <div class="cert-box">
+            <h4>Certificación de 40 horas académicas</h4>
+            <p>Emitida digitalmente y de forma gratuita por el INIA y el Vicerrectorado Académico de la UNA Puno: 16 horas presenciales/virtuales más 24 horas de trabajo aplicativo.</p>
+            <p>Requiere 100% de asistencia en las jornadas virtuales y el día de campo, junto con la presentación de un caso de éxito o plan de manejo forrajero.</p>
+          </div>
+          <div class="org-box">
+            <h4>Organizadores y colaboradores</h4>
+            <ul class="org-list">
+              <li>CTRIA Puno / INIA – EEA Illpa <span class="role">Dirección técnica</span></li>
+              <li>Universidad Nacional del Altiplano de Puno <span class="role">Soporte académico</span></li>
+              <li>AGRORURAL <span class="role">Día de campo</span></li>
+              <li>AGP S.A.C. <span class="role">Tecnología de semillas</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFIESTO -->
+  <section class="manifesto" id="manifiesto">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Quiénes somos</span>
+          <h2>Un manifiesto por la dignidad pastoril</h2>
+        </div>
+        <p>Durante milenios, las comunidades pastoriles y los ganaderos extensivos de América Latina han coevolucionado con los ecosistemas más desafiantes del continente: desde los altiplanos andinos a más de 4.000 metros, hasta las pampas del Cono Sur y las sabanas semiáridas del Gran Chaco.</p>
+      </div>
+      <div class="manifesto-grid">
+        <blockquote>
+          <p>Rechazamos la narrativa reduccionista que equipara la ganadería tradicional de pastizal con la industria intensiva en confinamiento. La ganadería pastoral y la transhumancia no son problemas ambientales: son soluciones ecológicas ancestrales e indispensables.</p>
+          <footer>Declaración institucional de Pastoraméricas</footer>
+        </blockquote>
+        <ul class="commitments">
+          <li><h4>Defender la movilidad animal</h4><p>La tenencia comunitaria y la transhumancia como estrategias bioculturales de adaptación a sequías y variaciones climáticas extremas.</p></li>
+          <li><h4>Aportar evidencia científica rigurosa</h4><p>Demostrar el rol del pastoreo en la regeneración de suelos, la captura de carbono y la prevención de mega-incendios mediante el consumo controlado de biomasa.</p></li>
+          <li><h4>Exigir representación directa</h4><p>Participación sin intermediarios en los foros de gobernanza global de las Naciones Unidas, con voz propia de las comunidades pastoriles.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERSTICIAL -->
+  <div class="interstitial photo-block duo-olive">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Altiplano_Peru.JPG" alt="Altiplano andino" loading="lazy">
+    <div class="duo-layer"></div>
+    <div class="shade"></div>
+    <div class="wrap content">
+      <blockquote>
+        No hay futuro sostenible para los ecosistemas de América Latina sin las comunidades pastoriles que los habitan y protegen.
+        <footer>Declaración por la Dignidad, los Pastizales y la Movilidad Pastoril</footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- TERRITORIOS -->
+  <section id="territorios">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Territorios y comunidades</span>
+          <h2>Tres biomas, un mismo horizonte</h2>
+        </div>
+        <p>De los bofedales altoandinos a las estepas patagónicas y las sabanas del Chaco americano: comunidades distintas, unidas por el pastoreo extensivo como forma de vida y de cuidado del territorio.</p>
+      </div>
+    </div>
+    <div class="territories">
+      <div class="territory photo-block duo-terra">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/018_Alpacas_Puno_Peru_3285_%2815141723422%29.jpg" alt="Alpacas en el altiplano de Puno" loading="lazy">
+        <div class="duo-layer"></div>
+        <div class="shade"></div>
+        <div class="content">
+          <span class="region-label">Andes · Perú y Bolivia</span>
+          <h3>Crianceros y alpaqueras altoandinas</h3>
+          <p>Crianza de camélidos sudamericanos a más de 4.000 msnm, conservación de bofedales y tejido tradicional de fibra de alpaca.</p>
+        </div>
+      </div>
+      <div class="territory photo-block duo-olive">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Argentinian_gauchos.jpg" alt="Gauchos en las pampas argentinas" loading="lazy">
+        <div class="duo-layer"></div>
+        <div class="shade"></div>
+        <div class="content">
+          <span class="region-label">Cono Sur</span>
+          <h3>Gauchos y productores de pastizal</h3>
+          <p>Ganadería tradicional de pampas y estepas patagónicas, con manejo del pastoreo como herramienta de regeneración del suelo.</p>
+        </div>
+      </div>
+      <div class="territory photo-block duo-amber">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chaco_Paraguay%2Ccattle_ranch%2C_Presidente_Hayes_Province.JPG" alt="Ganado en el Gran Chaco paraguayo" loading="lazy">
+        <div class="duo-layer"></div>
+        <div class="shade"></div>
+        <div class="content">
+          <span class="region-label">Gran Chaco Americano</span>
+          <h3>Llaneros y comunidades del Chaco</h3>
+          <p>Ganadería extensiva en sabanas semiáridas, gestión de biomasa como prevención de incendios y adaptación a sequías extremas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIENCIA -->
+  <section id="ciencia" style="background:var(--color-surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Ciencia y evidencia</span>
+          <h2>Tres pilares técnicos de la causa</h2>
+        </div>
+        <p>El respaldo científico de AGROSAVIA, INIA Perú y FAO LEAP sostiene lo que las comunidades pastoriles saben desde hace generaciones.</p>
+      </div>
+      <div class="ciencia-grid">
+        <div class="pillars">
+          <div class="pillar">
+            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 44c8 0 13-5.5 13-12.5 0-7-6-11-8-17-1 4-3 6-5 6-3 0-4-4-3-8-6 4-10 11-10 19C11 38.5 16 44 24 44Z" stroke="#8B4513" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div><h3>Prevención de incendios</h3><p>El pastoreo controlado reduce la carga de biomasa combustible y disminuye el riesgo de mega-incendios forestales en pastizales naturales.</p></div>
+          </div>
+          <div class="pillar">
+            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 14h36M6 24h36M6 34h36" stroke="#556B2F" stroke-width="2"/><path d="M14 14v20M24 14v20M34 14v20" stroke="#556B2F" stroke-width="2" opacity="0.4"/></svg>
+            <div><h3>Captura de carbono y suelo</h3><p>Sistemas de pastoreo bien gestionados regeneran materia orgánica, mejoran la estructura del suelo y capturan carbono a largo plazo.</p></div>
+          </div>
+          <div class="pillar">
+            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="5" stroke="#D97706" stroke-width="2"/><circle cx="32" cy="16" r="5" stroke="#D97706" stroke-width="2"/><path d="M6 40c0-7 5-11 10-11s10 4 10 11M22 40c0-7 5-11 10-11s10 4 10 11" stroke="#D97706" stroke-width="2"/></svg>
+            <div><h3>Socioeconomía y arraigo</h3><p>Saberes ancestrales, cadenas textiles de montaña y economías familiares que sostienen el tejido social rural.</p></div>
+          </div>
+        </div>
+        <div class="ciencia-photo photo-block duo-olive">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alpaca_%28Vicugna_pacos%29%2C_Laguna_de_Salinas%2C_Arequipa%2C_Per%C3%BA%2C_2015-08-02%2C_DD_43.jpg" alt="Alpaca en un bofedal altoandino" loading="lazy">
+          <div class="duo-layer"></div>
+          <div class="shade"></div>
+          <div class="caption content"><p>Los bofedales absorben y liberan agua lentamente, sosteniendo el pastoreo incluso en temporada seca.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIDERAZGO -->
+  <section id="liderazgo">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Liderazgos y científicos delegados</span>
+          <h2>Voces que representan a la red</h2>
+        </div>
+        <p>Técnicos, investigadoras y líderes comunitarios que llevan la voz de Pastoraméricas a los foros de gobernanza global.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="leaders">
+        <div class="leader">
+          <div class="role">Punto focal regional y secretario</div>
+          <h3>Pablo Frere</h3>
+          <p>Médico veterinario del Gran Chaco Americano, referente en Redes Chaco y en la International Land Coalition (ILC).</p>
+          <p>Ha presidido la alianza global FAO LEAP, impulsando metodologías de evaluación ambiental que reconocen las métricas reales de los pastizales naturales.</p>
+        </div>
+        <div class="leader">
+          <div class="role">Científica delegada · AGROSAVIA</div>
+          <h3>Dra. Clara Viviana Rúa Bustamante</h3>
+          <p>Investigadora de la Corporación Colombiana de Investigación Agropecuaria, especialista en sistemas ovinos y caprinos y restauración de suelos degradados.</p>
+          <p>Delegada técnica de Pastoraméricas en la Silk Road Caravan y en la cumbre UNCCD COP17 en Mongolia.</p>
+        </div>
+        <div class="leader">
+          <div class="role">Líder tradicional · Altiplano peruano</div>
+          <h3>Higinio</h3>
+          <p>Productor ganadero y referente de las comunidades altoandinas de crianza de camélidos sudamericanos y ovinos en Puno, Perú.</p>
+          <p>Vocero de la delegación suramericana en encuentros mundiales de pastores y defensor de la conservación de los bofedales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIANZAS -->
+  <section style="background:var(--color-surface);" id="alianzas">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Redes y alianzas globales</span>
+          <h2>Articulación transcontinental</h2>
+        </div>
+        <p>Pastoraméricas construye incidencia junto a plataformas de la ONU, redes gremiales y centros de investigación pública.</p>
+      </div>
+      <div class="alliances-grid">
+        <div class="alliance"><div class="name">WAMIP</div><span class="level">Alianza matriz</span><p>Representación política del nodo de América Latina en foros globales de derechos indígenas y movilidad pastoril.</p></div>
+        <div class="alliance"><div class="name">FAO LEAP</div><span class="level">Mesa técnica ONU</span><p>Incidencia metodológica en la medición del impacto ambiental y la huella de carbono de la ganadería.</p></div>
+        <div class="alliance"><div class="name">Mountain Partnership</div><span class="level">Plataforma ONU</span><p>Puesta en valor de productos de montaña, cadenas textiles tradicionales y empoderamiento de mujeres rurales.</p></div>
+        <div class="alliance"><div class="name">AGROSAVIA / INIA Perú</div><span class="level">Investigación pública</span><p>Validación técnico-científica sobre el manejo sostenible de pastizales nativos y alimentación animal.</p></div>
+        <div class="alliance"><div class="name">Pasteurs du Sahel</div><span class="level">Red transcontinental</span><p>Intercambio de saberes Sur-Sur entre África Subsahariana y Latinoamérica sobre adaptación a sequías extremas.</p></div>
+        <div class="alliance"><div class="name">IPDRS / ILC</div><span class="level">Capacitación y territorio</span><p>Formación en derechos territoriales, gobernanza agraria y comunicación para líderes de base.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIOS -->
+  <section id="medios">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="kicker">Medios y publicaciones</span><h2>La voz de la red en el debate público</h2></div>
+        <p>Artículos de opinión, coberturas internacionales y recursos técnicos disponibles para prensa y sociedad civil.</p>
+      </div>
+    </div>
+    <div class="media-grid">
+      <div class="media-card"><div class="outlet">El País</div><h3>Por qué comer animales puede ayudar a luchar contra el cambio climático</h3><a class="read" href="#contacto">Solicitar el artículo</a></div>
+      <div class="media-card"><div class="outlet">Sala de prensa</div><h3>Comunicados y notas técnicas de la red</h3><a class="read" href="#contacto">Ver banco de recursos</a></div>
+      <div class="media-card"><div class="outlet">Documentales</div><h3>Historias desde el altiplano, la pampa y el Chaco</h3><a class="read" href="#contacto">Contactar al equipo de medios</a></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="kicker">Contacto</span>
+        <h2 style="margin-bottom:20px;">Únete a la red</h2>
+        <p style="color:var(--color-muted); margin-bottom:32px; max-width:48ch;">Organizaciones, comunidades e investigadores pueden sumarse a Pastoraméricas. Cuéntanos brevemente sobre tu territorio o institución.</p>
+        <form class="contact-form" id="joinForm">
+          <div class="field"><label for="orgName">Nombre de la organización o comunidad</label><input type="text" id="orgName" name="orgName" required></div>
+          <div class="field"><label for="country">País</label>
+            <select id="country" name="country" required>
+              <option value="">Selecciona un país</option>
+              <option>Perú</option><option>Bolivia</option><option>Argentina</option><option>Colombia</option><option>Chile</option><option>Paraguay</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="field"><label for="email">Correo de contacto</label><input type="email" id="email" name="email" required></div>
+          <div class="field"><label for="message">Cuéntanos sobre tu territorio o interés</label><textarea id="message" name="message" required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start; color:#fff; background:var(--color-primary);">Enviar solicitud de adhesión</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+      <div class="contact-side">
+        <h3>Otros canales</h3>
+        <ul class="contact-channels">
+          <li><span class="clabel">Prensa y consultas técnicas</span>prensa@pastoramericas.org</li>
+          <li><span class="clabel">Secretaría regional</span>contacto@pastoramericas.org</li>
+          <li><span class="clabel">Seminario INIA Illpa en Puno</span>16 al 18 de septiembre de 2026 — <a href="https://forms.gle/hs1b4iiFMJu4sUDh6" target="_blank" rel="noopener" style="color:var(--color-primary); font-weight:600;">inscríbete aquí</a></li>
+        </ul>
+        <h3>Alianzas y redes</h3>
+        <p style="color:var(--color-muted); font-size:0.92rem;">WAMIP · FAO LEAP · Mountain Partnership · AGROSAVIA · INIA Perú · ILC</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand"><h5>Pastoraméricas</h5><p>Red Latinoamericana de Ganaderos Extensivos, articulada con el Movimiento Pastoril Mundial.</p></div>
+      <div><h5>Sitio</h5><ul><li><a href="#evento">Seminario Puno</a></li><li><a href="#manifiesto">Manifiesto</a></li><li><a href="#territorios">Territorios</a></li><li><a href="#liderazgo">Liderazgo</a></li></ul></div>
+      <div><h5>Seminario</h5><ul><li><a href="https://forms.gle/hs1b4iiFMJu4sUDh6" target="_blank" rel="noopener">Inscripción</a></li><li><a href="https://tinyurl.com/3ppdvw7s" target="_blank" rel="noopener">Programa</a></li><li><a href="#evento">Ejes temáticos</a></li></ul></div>
+      <div><h5>Alianzas</h5><ul><li>WAMIP</li><li>FAO LEAP</li><li>Mountain Partnership</li><li>ILC</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pastoraméricas — Movimiento Pastoril Mundial, nodo América Latina.</span>
+      <span>Fotografías: Wikimedia Commons, bajo licencia Creative Commons / dominio público.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const burger = document.getElementById('burgerBtn');
+  const nav = document.getElementById('primaryNav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll progress bar
+  const bar = document.getElementById('scrollBar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // Countdown to the seminar (16 Sept 2026)
+  const target = new Date('2026-09-16T09:00:00-05:00');
+  const end = new Date('2026-09-18T23:00:00-05:00');
+  const now = new Date();
+  const daysEl = document.getElementById('daysCount');
+  const labelEl = document.getElementById('daysLabel');
+  if (now >= target && now <= end){
+    daysEl.textContent = 'En curso';
+    labelEl.textContent = 'El seminario está sucediendo';
+  } else if (now > end) {
+    daysEl.textContent = 'Finalizado';
+    labelEl.textContent = 'Estado del seminario';
+  } else {
+    const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+    daysEl.textContent = diff === 0 ? 'Hoy' : diff === 1 ? 'Mañana' : diff + ' días';
+    labelEl.textContent = 'Días para el inicio';
+  }
+
+  // Ejes tabs
+  const tabs = document.querySelectorAll('.ejes-nav button');
+  const panels = document.querySelectorAll('.eje-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.setAttribute('aria-selected','false'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.setAttribute('aria-selected','true');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // Contact form (static demo)
+  document.getElementById('joinForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formStatus').textContent = 'Gracias — tu solicitud quedó registrada. El equipo de Pastoraméricas se pondrá en contacto pronto.';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
